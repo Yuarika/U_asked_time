@@ -1,0 +1,3879 @@
+/* ============================================================
+   U asked time
+   style.css
+   ============================================================ */
+
+
+/* ============================================================
+   基本設定
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+
+:root {
+    --bg: #05070a;
+    --panel: #10151b;
+    --panel2: #151c24;
+    --panel3: #1a222b;
+    --line: #29333e;
+    --line-bright: #3a4652;
+    --text: #edf2f7;
+    --muted: #7d8995;
+    --muted2: #596571;
+    --green: #55e887;
+    --red: #ff5361;
+    --blue: #4b9dff;
+    --gold: #ffd95a;
+    --history: #cbd3dc;
+}
+
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            #1b2631 0,
+            #0b1015 38%,
+            #05070a 78%,
+            #030406 100%
+        );
+    color: var(--text);
+    font-family:
+        "Noto Sans JP",
+        "Yu Gothic UI",
+        "Yu Gothic",
+        Meiryo,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+body {
+    padding:
+        28px
+        0
+        80px;
+}
+
+
+main {
+    width:
+        min(1180px, 94vw);
+    margin:
+        0 auto;
+}
+
+
+/* ============================================================
+   全体の文字
+   ============================================================ */
+
+button {
+    font-family:
+        inherit;
+}
+
+
+h1,
+h2,
+h3,
+strong {
+    text-rendering:
+        geometricPrecision;
+}
+
+
+/* ============================================================
+   ヘッダー
+   ============================================================ */
+
+.site-header {
+    text-align:
+        center;
+
+    margin:
+        0 0 20px;
+}
+
+
+.site-header h1 {
+    margin:
+        0;
+
+    font-family:
+        "Noto Sans JP",
+        "Yu Gothic",
+        sans-serif;
+
+    font-size:
+        clamp(30px, 5vw, 56px);
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.18em;
+
+    line-height:
+        1.1;
+
+    color:
+        #f3f6f9;
+
+    text-shadow:
+        0 3px 20px rgba(0,0,0,0.45);
+}
+
+
+/* ============================================================
+   不要な見出しを非表示
+   ============================================================ */
+
+.wall-heading,
+.switcher-head h2,
+.switcher-caption,
+.wall-kicker {
+    display:
+        none !important;
+}
+
+
+.north-panel h3 {
+    display:
+        none !important;
+}
+
+
+.east-panel h3 {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   最終回答カード
+   ============================================================ */
+
+.answer-card {
+    position:
+        relative;
+
+    border:
+        1px solid #29333d;
+
+    border-radius:
+        22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19,25,32,0.98),
+            rgba(9,13,18,0.98)
+        );
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,0.35),
+        inset 0 1px 0
+            rgba(255,255,255,0.025);
+
+    padding:
+        22px 20px 20px;
+
+    text-align:
+        center;
+
+    margin-bottom:
+        14px;
+}
+
+
+/* ============================================================
+   「問題」ラベル
+   ============================================================ */
+
+.answer-label {
+    font-family:
+        "Noto Sans JP",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.32em;
+
+    color:
+        #697581;
+}
+
+
+/* ============================================================
+   問題番号
+   ============================================================ */
+
+.problem-number {
+    margin-top:
+        6px;
+
+    min-height:
+        50px;
+
+    font-family:
+        "JetBrains Mono",
+        "Cascadia Code",
+        "Consolas",
+        monospace;
+
+    font-size:
+        clamp(30px, 5vw, 44px);
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.12em;
+
+    color:
+        #d7dee5;
+
+    line-height:
+        1.1;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,0.35);
+}
+
+
+/* ============================================================
+   プレイヤー最終回答
+   ============================================================ */
+
+.player-answer-label {
+    display:
+        block;
+
+    margin-top:
+        18px;
+
+    color:
+        #687580;
+}
+
+
+.player-final-answer {
+    min-height:
+        70px;
+
+    margin-top:
+        3px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size:
+        clamp(42px, 7vw, 62px);
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.16em;
+
+    line-height:
+        1.1;
+
+    color:
+        #dfe6ec;
+}
+
+
+.player-final-answer.solved {
+    color:
+        var(--green);
+
+    text-shadow:
+        0 0 12px
+            rgba(85,232,135,0.35),
+        0 0 30px
+            rgba(85,232,135,0.15);
+}
+
+
+/* ============================================================
+   ステージ表示
+   ============================================================ */
+
+.stage-status {
+    margin-top:
+        6px;
+
+    font-family:
+        "Noto Sans JP",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.18em;
+
+    color:
+        #596571;
+}
+
+
+/* ============================================================
+   問題カード
+   ============================================================ */
+
+.problem-card {
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(14,18,23,0.94);
+
+    padding:
+        14px 20px;
+
+    text-align:
+        center;
+
+    margin-bottom:
+        14px;
+}
+
+
+.problem-stage {
+    font-size:
+        10px;
+
+    letter-spacing:
+        0.3em;
+
+    color:
+        #687582;
+}
+
+
+.problem-text {
+    font-family:
+        "JetBrains Mono",
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size:
+        clamp(18px, 3vw, 26px);
+
+    margin-top:
+        4px;
+}
+
+
+/* ============================================================
+   壁 共通
+   ============================================================ */
+
+.wall {
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(16,21,27,0.98),
+            rgba(9,13,18,0.98)
+        );
+
+    box-shadow:
+        0 16px 45px
+            rgba(0,0,0,0.30),
+        inset 0 1px 0
+            rgba(255,255,255,0.02);
+
+    padding:
+        20px;
+
+    margin-bottom:
+        14px;
+}
+
+
+/* ============================================================
+   壁タイトル領域を詰める
+   ============================================================ */
+
+.wall-heading {
+    display:
+        none !important;
+}
+
+
+.switcher-head {
+    width:
+        100%;
+
+    min-height:
+        0;
+
+    margin:
+        0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        42px minmax(0, 1fr) 42px;
+
+    align-items:
+        center;
+
+    column-gap:
+        16px;
+}
+
+
+/*
+   HTMLでは
+
+   ←   タイトル   →
+
+   の順になっているため、
+   タイトル部分は中央列に置く。
+*/
+
+.switcher-head > div {
+    grid-column:
+        2;
+
+    min-width:
+        0;
+
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   壁切り替えエリア
+   ============================================================ */
+
+.side-wall-switcher {
+    width:
+        100%;
+
+    min-width:
+        0;
+}
+
+
+/* ============================================================
+   左右の矢印
+   ============================================================ */
+
+.side-arrow {
+    width:
+        42px;
+
+    height:
+        42px;
+
+    padding:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-shrink:
+        0;
+
+    box-sizing:
+        border-box;
+
+    border:
+        1px solid #35414d;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a222b,
+            #0e141a
+        );
+
+    color:
+        #dce3e9;
+
+    font-size:
+        29px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    transition:
+        background 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease,
+        transform 0.16s ease;
+}
+
+
+/* ============================================================
+   左矢印
+   ============================================================ */
+
+.switcher-head .side-arrow:first-child {
+    grid-column:
+        1;
+
+    grid-row:
+        1;
+}
+
+
+/* ============================================================
+   右矢印
+   ============================================================ */
+
+.switcher-head .side-arrow:last-child {
+    grid-column:
+        3;
+
+    grid-row:
+        1;
+}
+
+
+/* ============================================================
+   矢印 ホバー
+   ============================================================ */
+
+.side-arrow:hover:not(:disabled) {
+    background:
+        linear-gradient(
+            145deg,
+            #26323d,
+            #131b23
+        );
+
+    border-color:
+        #566573;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ============================================================
+   矢印 無効
+   ============================================================ */
+
+.side-arrow:disabled {
+    opacity:
+        0.2;
+
+    cursor:
+        default;
+}
+
+
+/* ============================================================
+   壁コンテンツ
+   ============================================================ */
+
+.side-content {
+    width:
+        100%;
+
+    min-width:
+        0;
+
+    margin-top:
+        20px;
+
+    text-align:
+        center;
+}
+
+
+/* ============================================================
+   結果表示
+   ============================================================ */
+
+.result-area {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        14px;
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        13px;
+
+    background:
+        #090c10;
+
+    margin-bottom:
+        14px;
+}
+
+
+.result-label {
+    font-size:
+        12px;
+
+    color:
+        var(--muted);
+}
+
+
+.result-character {
+    min-width:
+        60px;
+
+    text-align:
+        center;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+
+    font-size:
+        35px;
+
+    font-weight:
+        700;
+
+    min-height:
+        45px;
+}
+
+
+.result-character.solved {
+    color:
+        var(--green);
+
+    text-shadow:
+        0 0 13px
+        rgba(85,232,135,0.3);
+}
+
+
+/* ============================================================
+   複数候補
+   ============================================================ */
+
+.result-choices {
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    flex-wrap:
+        wrap;
+
+    justify-content:
+        center;
+}
+
+
+.result-choice {
+    min-width:
+        46px;
+
+    min-height:
+        44px;
+
+    border:
+        1px solid #46525e;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b232c,
+            #11171d
+        );
+
+    color:
+        #edf2f6;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+
+    font-size:
+        20px;
+
+    cursor:
+        pointer;
+}
+
+
+.result-choice.selected {
+    border-color:
+        var(--green);
+
+    background:
+        #173b25;
+
+    box-shadow:
+        0 0 14px
+        rgba(85,232,135,0.22);
+}
+
+
+/* ============================================================
+   西・南・東 共通
+   ============================================================ */
+
+.west-panels,
+.south-panels,
+.east-panels {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+}
+
+
+.west-panel,
+.south-panel,
+.east-panel {
+    position:
+        relative;
+
+    min-width:
+        0;
+
+    padding:
+        16px;
+
+    border:
+        1px solid #29343f;
+
+    border-radius:
+        16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23,29,37,0.98),
+            rgba(13,18,24,0.98)
+        );
+
+    box-shadow:
+        inset 0 1px 0
+            rgba(255,255,255,0.025);
+}
+
+
+/* ============================================================
+   説明文
+   ============================================================ */
+
+.panel-description,
+.east-description {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   不要な選択表示を全部消す
+   ============================================================ */
+
+.selection-display,
+.selection-display span,
+.east-selection,
+.east-selection span {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   北の壁
+   ============================================================ */
+
+.north-panels {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+}
+
+
+.north-panel {
+    padding:
+        16px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--panel2);
+
+    transition:
+        0.18s ease;
+}
+
+
+.north-panel.north-off {
+    border-color:
+        #315b8f;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(22,45,73,0.96),
+            rgba(15,27,43,0.96)
+        );
+
+    box-shadow:
+        inset 0 0 22px
+            rgba(75,157,255,0.08),
+        0 0 12px
+            rgba(75,157,255,0.03);
+}
+
+
+.north-panel.north-on {
+    border-color:
+        #8d303a;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(78,25,32,0.96),
+            rgba(39,16,20,0.96)
+        );
+
+    box-shadow:
+        inset 0 0 22px
+            rgba(255,83,97,0.08),
+        0 0 12px
+            rgba(255,83,97,0.03);
+}
+
+
+.north-panel[hidden] {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   北の文字
+   ============================================================ */
+
+.north-character {
+    text-align:
+        center;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+
+    font-size:
+        38px;
+
+    font-weight:
+        800;
+
+    min-height:
+        48px;
+
+    letter-spacing:
+        0.08em;
+}
+
+
+/* ============================================================
+   北 ON/OFF
+   ============================================================ */
+
+.north-toggle-button {
+    display:
+        block;
+
+    width:
+        100%;
+
+    border:
+        1px solid #4b78aa;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a426f,
+            #102b4e
+        );
+
+    color:
+        #dcecff;
+
+    padding:
+        10px 8px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.12em;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.15s ease;
+}
+
+
+.north-toggle-button.selected {
+    border-color:
+        var(--red);
+
+    background:
+        linear-gradient(
+            145deg,
+            #6a1c27,
+            #42131a
+        );
+
+    color:
+        #fff;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,83,97,0.25);
+}
+
+
+.north-panel-result {
+    text-align:
+        center;
+
+    color:
+        #a8b3bd;
+
+    margin-top:
+        9px;
+
+    min-height:
+        25px;
+}
+
+
+/* ============================================================
+   北の結果ライン
+   ============================================================ */
+
+.north-result-line {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        18px;
+
+    align-items:
+        center;
+
+    border-top:
+        1px solid var(--line);
+
+    margin-top:
+        13px;
+
+    padding-top:
+        13px;
+
+    color:
+        #87929e;
+}
+
+
+.north-result-line strong {
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        serif;
+
+    font-size:
+        30px;
+
+    color:
+        var(--text);
+}
+
+
+/* ============================================================
+   西の壁
+   ============================================================ */
+
+.west-buttons {
+    position:
+        relative;
+
+    width:
+        min(220px, 100%);
+
+    aspect-ratio:
+        1;
+
+    margin:
+        auto;
+}
+
+
+.west-day {
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    margin:
+        -24px;
+
+    border:
+        1px solid #3d4854;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202a33,
+            #111820
+        );
+
+    color:
+        transparent !important;
+
+    font-size:
+        0 !important;
+
+    cursor:
+        pointer;
+
+    --r:
+        82px;
+
+    transform:
+        rotate(var(--a))
+        translateY(calc(var(--r) * -1))
+        rotate(calc(var(--a) * -1));
+
+    transition:
+        0.15s ease;
+}
+
+
+.west-day[data-button="0"] {
+    --a:
+        0deg;
+}
+
+
+.west-day[data-button="1"] {
+    --a:
+        51.428deg;
+}
+
+
+.west-day[data-button="2"] {
+    --a:
+        102.857deg;
+}
+
+
+.west-day[data-button="3"] {
+    --a:
+        154.286deg;
+}
+
+
+.west-day[data-button="4"] {
+    --a:
+        205.714deg;
+}
+
+
+.west-day[data-button="5"] {
+    --a:
+        257.143deg;
+}
+
+
+.west-day[data-button="6"] {
+    --a:
+        308.571deg;
+}
+
+
+/* 日 */
+
+.west-day[data-button="0"] {
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,83,97,0.12);
+}
+
+
+/* 土 */
+
+.west-day[data-button="6"] {
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(75,157,255,0.12);
+}
+
+
+/* 選択中 */
+
+.west-day.selected {
+    background:
+        linear-gradient(
+            145deg,
+            #245a36,
+            #143a24
+        );
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 0 10px
+            rgba(85,232,135,0.38),
+        0 0 24px
+            rgba(85,232,135,0.15),
+        inset 0 0 10px
+            rgba(85,232,135,0.08);
+}
+
+
+/* 日選択 */
+
+.west-day[data-button="0"].selected {
+    background:
+        linear-gradient(
+            145deg,
+            #6b2730,
+            #42171d
+        );
+
+    border-color:
+        var(--red);
+
+    box-shadow:
+        0 0 11px
+            rgba(255,83,97,0.4),
+        0 0 24px
+            rgba(255,83,97,0.15);
+}
+
+
+/* 土選択 */
+
+.west-day[data-button="6"].selected {
+    background:
+        linear-gradient(
+            145deg,
+            #214d82,
+            #132f55
+        );
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 11px
+            rgba(75,157,255,0.4),
+        0 0 24px
+            rgba(75,157,255,0.15);
+}
+
+
+/* ============================================================
+   南の壁
+   ============================================================ */
+
+.south-number-buttons {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        8px;
+}
+
+
+.south-number-button,
+.south-mode-button,
+.north-mode-button,
+.panel-toggle-button {
+    border:
+        1px solid #3b4651;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d2730,
+            #121920
+        );
+
+    color:
+        #dfe6ec;
+
+    padding:
+        10px 8px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.13s ease;
+}
+
+
+.south-number-button:hover,
+.south-mode-button:hover {
+    border-color:
+        #596773;
+
+    background:
+        #26313b;
+}
+
+
+.south-number-button.selected {
+    background:
+        linear-gradient(
+            145deg,
+            #245b38,
+            #153a25
+        );
+
+    border-color:
+        var(--green);
+
+    box-shadow:
+        0 0 11px
+            rgba(85,232,135,0.25);
+}
+
+
+/* ============================================================
+   南 モード
+   ============================================================ */
+
+.south-mode-buttons {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        8px;
+
+    margin-top:
+        8px;
+}
+
+
+.south-mode-button[data-mode="on"].selected {
+    background:
+        linear-gradient(
+            145deg,
+            #6a1d27,
+            #41151b
+        );
+
+    border-color:
+        var(--red);
+
+    box-shadow:
+        0 0 13px
+        rgba(255,83,97,0.3);
+}
+
+
+.south-mode-button[data-mode="unknown"].selected {
+    background:
+        linear-gradient(
+            145deg,
+            #174c82,
+            #112f54
+        );
+
+    border-color:
+        var(--blue);
+
+    box-shadow:
+        0 0 13px
+        rgba(75,157,255,0.3);
+}
+
+
+/* ============================================================
+   南の選択表示も消す
+   ============================================================ */
+
+.selection-display {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   東の壁
+   ============================================================ */
+
+.east-panels {
+    grid-template-columns:
+        1.12fr 1fr 1fr;
+}
+
+
+/* ============================================================
+   東 上部の文字
+   王 / 頭 / 馬 / ？
+   ============================================================ */
+
+.east-special-answer {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    min-height:
+        66px;
+
+    margin:
+        0 0 12px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size:
+        42px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.12em;
+
+    color:
+        #e9eef3;
+
+    text-shadow:
+        0 3px 12px rgba(0,0,0,0.45);
+
+    transition:
+        0.18s ease;
+}
+
+
+.east-special-answer::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        18%;
+
+    right:
+        18%;
+
+    bottom:
+        0;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #3d4955,
+            transparent
+        );
+}
+
+
+.east-special-answer.correct {
+    color:
+        var(--green);
+
+    text-shadow:
+        0 0 12px
+            rgba(85,232,135,0.4),
+        0 0 28px
+            rgba(85,232,135,0.18);
+}
+
+
+/* ============================================================
+   東 将棋盤
+   ============================================================ */
+
+.east-shogi-board {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(9, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(9, minmax(0, 1fr));
+
+    width:
+        min(100%, 320px);
+
+    aspect-ratio:
+        1 / 1;
+
+    margin:
+        4px auto 0;
+
+    padding:
+        3px;
+
+    border:
+        2px solid #806039;
+
+    border-radius:
+        5px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d29a50,
+            #98622c
+        );
+
+    box-shadow:
+        0 10px 25px
+            rgba(0,0,0,0.3),
+        inset 0 0 0 1px
+            rgba(255,255,255,0.08);
+}
+
+
+.east-shogi-cell {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    min-width:
+        0;
+
+    min-height:
+        0;
+
+    padding:
+        0;
+
+    border:
+        1px solid
+        rgba(77,45,12,0.42);
+
+    border-radius:
+        0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9ad68,
+            #c18945
+        );
+
+    color:
+        transparent !important;
+
+    font-size:
+        0 !important;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.12s ease;
+}
+
+
+.east-shogi-cell.empty {
+    cursor:
+        default;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c88e48,
+            #b47534
+        );
+}
+
+
+.east-shogi-cell:hover:not(.empty) {
+    background:
+        linear-gradient(
+            145deg,
+            #e7c17f,
+            #ce9750
+        );
+}
+
+
+.east-shogi-cell.selected {
+    background:
+        linear-gradient(
+            145deg,
+            #fff19c,
+            #ffd83f
+        ) !important;
+
+    border-color:
+        #fff !important;
+
+    box-shadow:
+        inset 0 0 0 2px
+            rgba(255,255,255,0.55),
+        0 0 9px
+            rgba(255,225,90,0.7),
+        0 0 22px
+            rgba(255,225,90,0.32);
+}
+
+
+/* ============================================================
+   東 かな
+   ============================================================ */
+
+.east-kana-buttons {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    grid-template-rows:
+        repeat(4, 48px);
+
+    gap:
+        8px;
+
+    width:
+        min(100%, 230px);
+
+    margin:
+        4px auto 0;
+}
+
+
+/* ============================================================
+   かなボタン
+   ============================================================ */
+
+.east-kana-button {
+    width:
+        100%;
+
+    height:
+        48px;
+
+    padding:
+        0;
+
+    border:
+        1px solid #3b4651;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d2730,
+            #121920
+        );
+
+    color:
+        transparent !important;
+
+    font-size:
+        0 !important;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.13s ease;
+}
+
+
+/* ============================================================
+   かな配置
+
+   あ か さ
+   た な は
+   ま や ら
+     わ
+   ============================================================ */
+
+.east-kana-button:nth-child(1) {
+    grid-column:
+        1;
+
+    grid-row:
+        1;
+}
+
+
+.east-kana-button:nth-child(2) {
+    grid-column:
+        2;
+
+    grid-row:
+        1;
+}
+
+
+.east-kana-button:nth-child(3) {
+    grid-column:
+        3;
+
+    grid-row:
+        1;
+}
+
+
+.east-kana-button:nth-child(4) {
+    grid-column:
+        1;
+
+    grid-row:
+        2;
+}
+
+
+.east-kana-button:nth-child(5) {
+    grid-column:
+        2;
+
+    grid-row:
+        2;
+}
+
+
+.east-kana-button:nth-child(6) {
+    grid-column:
+        3;
+
+    grid-row:
+        2;
+}
+
+
+.east-kana-button:nth-child(7) {
+    grid-column:
+        1;
+
+    grid-row:
+        3;
+}
+
+
+.east-kana-button:nth-child(8) {
+    grid-column:
+        2;
+
+    grid-row:
+        3;
+}
+
+
+.east-kana-button:nth-child(9) {
+    grid-column:
+        3;
+
+    grid-row:
+        3;
+}
+
+
+/*
+   わ
+   3列目・4行目ではなく
+   2列目・4行目に配置
+*/
+
+.east-kana-button:nth-child(10) {
+    grid-column:
+        2;
+
+    grid-row:
+        4;
+}
+
+
+/* ============================================================
+   かなホバー
+   ============================================================ */
+
+.east-kana-button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #27343f,
+            #18222b
+        );
+
+    border-color:
+        #596875;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ============================================================
+   かな選択中
+   ============================================================ */
+
+.east-kana-button.selected {
+    background:
+        linear-gradient(
+            145deg,
+            #285d39,
+            #163c27
+        ) !important;
+
+    border-color:
+        var(--green) !important;
+
+    box-shadow:
+        0 0 9px
+            rgba(85,232,135,0.4),
+        0 0 21px
+            rgba(85,232,135,0.15),
+        inset 0 0 10px
+            rgba(85,232,135,0.08);
+}
+
+
+/* ============================================================
+   かなリセット
+   ============================================================ */
+
+.east-reset-button {
+    display:
+        block;
+
+    width:
+        min(100%, 180px);
+
+    margin:
+        12px auto 0;
+
+    padding:
+        7px 12px;
+
+    border:
+        1px solid #35414c;
+
+    border-radius:
+        9px;
+
+    background:
+        #11171d;
+
+    color:
+        #727f8b;
+
+    font-size:
+        10px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.15s ease;
+}
+
+
+.east-reset-button:hover {
+    background:
+        #1b242d;
+
+    color:
+        #c7d0d8;
+
+    border-color:
+        #566572;
+}
+
+
+/* ============================================================
+   東 十二支
+   ============================================================ */
+
+.east-zodiac-circle {
+    position:
+        relative;
+
+    width:
+        min(270px, 100%);
+
+    aspect-ratio:
+        1 / 1;
+
+    margin:
+        4px auto 0;
+
+    border:
+        1px dashed #34404c;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(29,38,48,0.42),
+            rgba(9,13,18,0.15) 68%,
+            transparent 69%
+        );
+}
+
+
+/* ============================================================
+   十二支ボタン
+   ============================================================ */
+
+.east-zodiac-button {
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        43px;
+
+    height:
+        43px;
+
+    margin:
+        -21.5px;
+
+    padding:
+        0;
+
+    border:
+        1px solid #3b4651;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d2730,
+            #121920
+        );
+
+    color:
+        transparent !important;
+
+    font-size:
+        0 !important;
+
+    cursor:
+        pointer;
+
+    --zr:
+        105px;
+
+    transform:
+        rotate(var(--zodiac-angle))
+        translateY(calc(var(--zr) * -1))
+        rotate(calc(var(--zodiac-angle) * -1));
+
+    transition:
+        0.15s ease;
+}
+
+
+.east-zodiac-button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #293640,
+            #18232c
+        );
+
+    border-color:
+        #596875;
+
+    transform:
+        rotate(var(--zodiac-angle))
+        translateY(
+            calc((var(--zr) * -1) - 3px)
+        )
+        rotate(
+            calc(var(--zodiac-angle) * -1)
+        );
+}
+
+
+.east-zodiac-button.selected {
+    background:
+        linear-gradient(
+            145deg,
+            #285d39,
+            #163d27
+        ) !important;
+
+    border-color:
+        var(--green) !important;
+
+    box-shadow:
+        0 0 9px
+            rgba(85,232,135,0.42),
+        0 0 22px
+            rgba(85,232,135,0.16),
+        inset 0 0 8px
+            rgba(85,232,135,0.08);
+}
+
+
+/* ============================================================
+   東の下にある「？」を完全に消す
+   ============================================================ */
+
+.east-result {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   クリア済み履歴
+   ============================================================ */
+
+.clear-history-card {
+    position:
+        relative;
+
+    margin:
+        18px 0 14px;
+
+    padding:
+        22px 24px 24px;
+
+    border:
+        1px solid #303b46;
+
+    border-radius:
+        20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,24,31,0.98),
+            rgba(8,12,17,0.98)
+        );
+
+    box-shadow:
+        0 15px 40px
+            rgba(0,0,0,0.30),
+        inset 0 1px 0
+            rgba(255,255,255,0.025);
+}
+
+
+/* ============================================================
+   クリア済み 見出し
+   ============================================================ */
+
+.clear-history-heading {
+    position:
+        relative;
+
+    margin:
+        0 0 18px;
+
+    text-align:
+        center;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size:
+        clamp(21px, 3vw, 27px);
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.24em;
+
+    color:
+        #e1e7ec;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.5);
+}
+
+
+/*
+   見出しの左右の装飾線
+*/
+
+.clear-history-heading::before,
+.clear-history-heading::after {
+    content:
+        "";
+
+    display:
+        inline-block;
+
+    width:
+        clamp(25px, 10vw, 90px);
+
+    height:
+        1px;
+
+    vertical-align:
+        middle;
+
+    margin:
+        0 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #48535e
+        );
+}
+
+
+.clear-history-heading::after {
+    background:
+        linear-gradient(
+            90deg,
+            #48535e,
+            transparent
+        );
+}
+
+
+/* ============================================================
+   クリア履歴
+   ============================================================ */
+
+.clear-history {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        7px;
+}
+
+
+/* ============================================================
+   クリア履歴 1行
+   ============================================================ */
+
+.north-history-item {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        12px;
+
+    min-height:
+        50px;
+
+    padding:
+        7px 12px;
+
+    border:
+        1px solid
+        rgba(53,64,75,0.65);
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(12,17,22,0.72);
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.north-history-item:hover {
+    background:
+        rgba(22,29,37,0.85);
+
+    border-color:
+        #46535f;
+}
+
+
+/* ============================================================
+   履歴番号
+   ============================================================ */
+
+.north-history-number {
+    min-width:
+        28px;
+
+    font-family:
+        "JetBrains Mono",
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    color:
+        #6f7c87;
+}
+
+
+/* ============================================================
+   履歴の問題番号
+   ============================================================ */
+
+.north-history-question {
+    font-family:
+        "JetBrains Mono",
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size:
+        16px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.06em;
+
+    color:
+        #aeb8c1;
+}
+
+
+/* ============================================================
+   履歴の矢印
+   ============================================================ */
+
+.north-history-arrow {
+    font-family:
+        "Noto Sans JP",
+        sans-serif;
+
+    font-size:
+        17px;
+
+    font-weight:
+        600;
+
+    color:
+        #5e6b76;
+}
+
+
+/* ============================================================
+   履歴の解答
+   ============================================================ */
+
+.north-history-answer {
+    min-width:
+        72px;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size:
+        28px;
+
+    font-weight:
+        900;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        var(--history);
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.35);
+}
+
+
+/* ============================================================
+   最終クリア
+   ============================================================ */
+
+.clear-card {
+    border:
+        1px solid #365d43;
+
+    border-radius:
+        22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(49,102,66,0.20),
+            rgba(10,17,13,0.97) 70%
+        );
+
+    box-shadow:
+        0 18px 50px
+            rgba(0,0,0,0.35),
+        inset 0 1px 0
+            rgba(255,255,255,0.025);
+
+    text-align:
+        center;
+
+    padding:
+        28px;
+
+    margin-top:
+        16px;
+
+    color:
+        #8e9b96;
+
+    font-family:
+        "Noto Sans JP",
+        sans-serif;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.35em;
+}
+
+
+.clear-card strong {
+    display:
+        block;
+
+    margin-top:
+        9px;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size:
+        clamp(40px, 7vw, 58px);
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.16em;
+
+    color:
+        var(--green);
+
+    text-shadow:
+        0 0 14px
+            rgba(85,232,135,0.4),
+        0 0 30px
+            rgba(85,232,135,0.18);
+}
+
+
+/* ============================================================
+   ゲームクリア時
+   ============================================================ */
+
+.game-clear .answer-card {
+    border-color:
+        #3c8d56;
+
+    box-shadow:
+        0 18px 50px
+            rgba(0,0,0,0.35),
+        0 0 28px
+            rgba(85,232,135,0.08);
+}
+
+
+/* ============================================================
+   タブレット
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+    .west-panels,
+    .south-panels,
+    .east-panels {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .north-panels {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .north-panel[data-north-side="east"] {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .wall {
+        padding:
+            15px;
+    }
+
+
+    .east-shogi-board {
+        width:
+            min(100%, 360px);
+    }
+
+
+    .east-zodiac-circle {
+        width:
+            min(290px, 100%);
+    }
+}
+
+
+/* ============================================================
+   スマートフォン
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+    body {
+        padding-top:
+            12px;
+
+        padding-bottom:
+            50px;
+    }
+
+
+    main {
+        width:
+            95vw;
+    }
+
+
+    .site-header {
+        margin-bottom:
+            14px;
+    }
+
+
+    .site-header h1 {
+        font-size:
+            30px;
+
+        letter-spacing:
+            0.13em;
+    }
+
+
+    .answer-card {
+        padding:
+            18px 14px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .problem-number {
+        font-size:
+            32px;
+    }
+
+
+    .player-final-answer {
+        font-size:
+            43px;
+
+        min-height:
+            58px;
+    }
+
+
+    .north-panels {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .north-panel[data-north-side="east"] {
+        grid-column:
+            auto;
+    }
+
+
+    .west-buttons {
+        width:
+            230px;
+    }
+
+
+    .east-special-answer {
+        min-height:
+            58px;
+
+        font-size:
+            38px;
+    }
+
+
+    .east-shogi-board {
+        width:
+            min(100%, 330px);
+    }
+
+
+    .east-kana-buttons {
+        width:
+            min(100%, 250px);
+
+        grid-template-rows:
+            repeat(4, 52px);
+    }
+
+
+    .east-kana-button {
+        height:
+            52px;
+    }
+
+
+    .east-zodiac-circle {
+        width:
+            260px;
+    }
+
+
+    .east-zodiac-button {
+        --zr:
+            97px;
+    }
+
+
+    .clear-history-card {
+        padding:
+            18px 10px 20px;
+    }
+
+
+    .clear-history-heading {
+        font-size:
+            20px;
+
+        letter-spacing:
+            0.16em;
+    }
+
+
+    .clear-history-heading::before,
+    .clear-history-heading::after {
+        width:
+            20px;
+
+        margin:
+            0 7px;
+    }
+
+
+    .north-history-item {
+        gap:
+            7px;
+
+        padding:
+            7px 6px;
+    }
+
+
+    .north-history-number {
+        min-width:
+            20px;
+
+        font-size:
+            11px;
+    }
+
+
+    .north-history-question {
+        font-size:
+            13px;
+    }
+
+
+    .north-history-arrow {
+        font-size:
+            14px;
+    }
+
+
+    .north-history-answer {
+        min-width:
+            58px;
+
+        font-size:
+            24px;
+    }
+
+
+    .clear-card {
+        padding:
+            22px 14px;
+    }
+
+
+    .clear-card strong {
+        font-size:
+            42px;
+    }
+
+
+    /* ----------------------------------------
+       スマホでも矢印を左右端に固定
+       ---------------------------------------- */
+
+    .switcher-head {
+        grid-template-columns:
+            38px minmax(0, 1fr) 38px;
+
+        column-gap:
+            8px;
+    }
+
+
+    .side-arrow {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        font-size:
+            26px;
+    }
+}
+
+
+/* ============================================================
+   北の壁
+   クリア済み履歴
+   ============================================================ */
+
+.north-history-item {
+    display:
+        flex;
+
+    align-items:
+        center;
+}
+
+
+.north-history-number {
+    font-size:
+        13px;
+}
+
+
+.north-history-question {
+    font-size:
+        16px;
+}
+
+
+.north-history-arrow {
+    font-size:
+        17px;
+}
+
+
+.north-history-answer {
+    font-size:
+        28px;
+}
+
+
+/* ============================================================
+   タイトル下の数字
+   ============================================================ */
+
+.title-numbers {
+    margin-top:
+        3px;
+
+    margin-bottom:
+        18px;
+
+    font-family:
+        "JetBrains Mono",
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size:
+        10px;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        0.08em;
+
+    color:
+        rgba(255, 255, 255, 0.20);
+
+    text-align:
+        center;
+
+    line-height:
+        1;
+
+    user-select:
+        none;
+
+    pointer-events:
+        none;
+}
+/* ============================================================
+   ゲーム背景
+   title.png をぼかして全面表示
+   ============================================================ */
+
+/* ============================================================
+   ゲーム背景
+   title.png をぼかして全面表示
+   ============================================================ */
+
+.game-background {
+
+    position: fixed;
+
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
+
+    z-index: 0;
+
+    background-image: url("../images/title.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    filter: blur(18px);
+
+    transform: scale(1.08);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   背景を暗くする
+   ============================================================ */
+
+.game-background-overlay {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 1;
+
+    background: rgba(5, 7, 10, 0.78);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   ゲーム本体を背景より前に表示
+   ============================================================ */
+
+main {
+
+    position: relative;
+
+    z-index: 2;
+}
+/* ============================================================
+   最終クリア演出
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   演出全体
+   ------------------------------------------------------------ */
+
+.final-clear-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(40, 70, 95, 0.30) 0%,
+            rgba(5, 7, 10, 0.96) 72%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+
+/* ------------------------------------------------------------
+   表示状態
+   ------------------------------------------------------------ */
+
+.final-clear-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* ------------------------------------------------------------
+   CLEARコンテンツ
+   ------------------------------------------------------------ */
+
+.final-clear-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    width: 100%;
+
+    padding: 30px;
+
+    animation:
+        final-clear-content-in
+        0.9s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both;
+
+}
+
+
+/* ------------------------------------------------------------
+   ALL PUZZLES CLEARED
+   ------------------------------------------------------------ */
+
+.final-clear-small {
+
+    margin-bottom: 12px;
+
+    color: rgba(237, 242, 247, 0.72);
+
+    font-size: clamp(
+        13px,
+        2vw,
+        20px
+    );
+
+    font-weight: 600;
+
+    letter-spacing: 0.32em;
+
+    text-transform: uppercase;
+
+    opacity: 0;
+
+    animation:
+        final-clear-small-in
+        0.8s
+        0.4s
+        ease
+        forwards;
+
+}
+
+
+/* ------------------------------------------------------------
+   CLEAR!
+   ------------------------------------------------------------ */
+
+.final-clear-title {
+
+    position: relative;
+
+    color: #ffffff;
+
+    font-size: clamp(
+        80px,
+        17vw,
+        220px
+    );
+
+    line-height: 0.9;
+
+    font-weight: 900;
+
+    letter-spacing: 0.04em;
+
+    text-shadow:
+
+        0 0 10px rgba(255, 255, 255, 0.95),
+
+        0 0 30px rgba(255, 255, 255, 0.8),
+
+        0 0 70px rgba(85, 232, 135, 0.75),
+
+        0 0 130px rgba(75, 157, 255, 0.55);
+
+    animation:
+
+        final-clear-title-in
+        1.1s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both,
+
+        final-clear-title-glow
+        2.2s
+        1.0s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+/* ------------------------------------------------------------
+   CLEAR! 下のライン
+   ------------------------------------------------------------ */
+
+.final-clear-line {
+
+    width: min(
+        520px,
+        70vw
+    );
+
+    height: 2px;
+
+    margin-top: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.95),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 35px rgba(85, 232, 135, 0.5);
+
+    transform: scaleX(0);
+
+    animation:
+        final-clear-line-in
+        0.8s
+        0.75s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        forwards;
+
+}
+
+
+/* ------------------------------------------------------------
+   U asked time
+   ------------------------------------------------------------ */
+
+.final-clear-subtitle {
+
+    margin-top: 20px;
+
+    color: rgba(237, 242, 247, 0.82);
+
+    font-size: clamp(
+        16px,
+        2.5vw,
+        24px
+    );
+
+    letter-spacing: 0.25em;
+
+    opacity: 0;
+
+    animation:
+        final-clear-small-in
+        0.8s
+        0.9s
+        ease
+        forwards;
+
+}
+
+
+/* ------------------------------------------------------------
+   X共有ボタン
+   ------------------------------------------------------------ */
+
+.x-share-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-width: 260px;
+
+    min-height: 58px;
+
+    margin-top: 42px;
+
+    padding: 14px 28px;
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.35
+    );
+
+    border-radius: 999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+
+    transform:
+        translateY(20px)
+        scale(0.95);
+
+    animation:
+        final-clear-button-in
+        0.8s
+        1.5s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        forwards;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+
+}
+
+
+/* ------------------------------------------------------------
+   Xボタン ホバー
+   ------------------------------------------------------------ */
+
+.x-share-button:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.16
+        );
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+
+    box-shadow:
+        0 14px 45px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(
+            255,
+            255,
+            255,
+            0.12
+        );
+
+}
+
+
+/* ------------------------------------------------------------
+   Xアイコン
+   ------------------------------------------------------------ */
+
+.x-share-icon {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+}
+
+
+/* ------------------------------------------------------------
+   背景の光
+   ------------------------------------------------------------ */
+
+.clear-flash {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+
+        0 0 30px #ffffff,
+
+        0 0 80px rgba(
+            85,
+            232,
+            135,
+            0.95
+        ),
+
+        0 0 160px rgba(
+            75,
+            157,
+            255,
+            0.8
+        );
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    opacity: 0;
+
+}
+
+
+.final-clear-overlay.show .clear-flash {
+
+    animation:
+        final-clear-flash
+        1.4s
+        ease-out
+        forwards;
+
+}
+
+
+/* ------------------------------------------------------------
+   背景パーティクル風エフェクト
+   ------------------------------------------------------------ */
+
+.clear-particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    background-image:
+
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.8) 0 1px,
+            transparent 2px
+        );
+
+    background-size: 90px 90px;
+
+    animation:
+        final-clear-particles
+        1.8s
+        0.2s
+        ease-out
+        forwards;
+
+}
+
+
+/* ------------------------------------------------------------
+   アニメーション
+   ------------------------------------------------------------ */
+
+@keyframes final-clear-content-in {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.75)
+            translateY(20px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes final-clear-title-in {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.45);
+
+        filter:
+            blur(14px);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.08);
+
+        filter:
+            blur(0);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+@keyframes final-clear-title-glow {
+
+    0% {
+
+        text-shadow:
+
+            0 0 10px rgba(255, 255, 255, 0.9),
+
+            0 0 30px rgba(255, 255, 255, 0.7),
+
+            0 0 60px rgba(85, 232, 135, 0.5);
+
+    }
+
+    100% {
+
+        text-shadow:
+
+            0 0 15px rgba(255, 255, 255, 1),
+
+            0 0 45px rgba(255, 255, 255, 0.9),
+
+            0 0 100px rgba(85, 232, 135, 0.9),
+
+            0 0 160px rgba(75, 157, 255, 0.7);
+
+    }
+
+}
+
+
+@keyframes final-clear-small-in {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes final-clear-line-in {
+
+    0% {
+
+        transform:
+            scaleX(0);
+
+        opacity: 0;
+
+    }
+
+    100% {
+
+        transform:
+            scaleX(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes final-clear-button-in {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.9);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes final-clear-flash {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(80);
+
+    }
+
+}
+
+
+@keyframes final-clear-particles {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.8);
+
+    }
+
+    30% {
+
+        opacity: 0.35;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(1.25);
+
+    }
+
+}
+
+
+/* ------------------------------------------------------------
+   最終クリア中は裏側を操作できない
+   ------------------------------------------------------------ */
+
+body.final-clear-active {
+
+    overflow: hidden;
+
+}
+
+
+/* ------------------------------------------------------------
+   スマートフォン
+   ------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+
+    .final-clear-small {
+
+        letter-spacing: 0.18em;
+
+    }
+
+
+    .final-clear-title {
+
+        font-size: 24vw;
+
+        letter-spacing: 0.02em;
+
+    }
+
+
+    .final-clear-line {
+
+        margin-top: 22px;
+
+    }
+
+
+    .final-clear-subtitle {
+
+        margin-top: 16px;
+
+        font-size: 16px;
+
+        letter-spacing: 0.18em;
+
+    }
+
+
+    .x-share-button {
+
+        min-width: 230px;
+
+        min-height: 54px;
+
+        margin-top: 34px;
+
+        padding:
+            12px 22px;
+
+    }
+
+}
+/* ============================================================
+   ステージクリア演出
+   ============================================================ */
+
+.stage-clear-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(40, 70, 95, 0.18),
+            rgba(5, 7, 10, 0.82) 75%
+        );
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.stage-clear-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.stage-clear-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    animation:
+        stage-clear-content-in
+        0.65s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both;
+}
+
+.stage-clear-label {
+    color: rgba(237, 242, 247, 0.65);
+
+    font-size: clamp(
+        11px,
+        2vw,
+        16px
+    );
+
+    font-weight: 700;
+    letter-spacing: 0.32em;
+
+    margin-bottom: 10px;
+
+    animation:
+        stage-clear-label-in
+        0.5s
+        0.08s
+        ease
+        both;
+}
+
+.stage-clear-word {
+    color: #ffffff;
+
+    font-family:
+        "Noto Serif JP",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size: clamp(
+        60px,
+        11vw,
+        120px
+    );
+
+    font-weight: 900;
+
+    letter-spacing: 0.16em;
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.9),
+        0 0 25px rgba(85,232,135,0.55),
+        0 0 55px rgba(85,232,135,0.3);
+
+    animation:
+        stage-clear-word-in
+        0.7s
+        0.05s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        both;
+}
+
+.stage-clear-line {
+    width: min(
+        320px,
+        65vw
+    );
+
+    height: 1px;
+
+    margin-top: 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.8),
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(85,232,135,0.45);
+
+    transform-origin: center;
+
+    animation:
+        stage-clear-line-in
+        0.55s
+        0.18s
+        ease
+        both;
+}
+
+
+/* ============================================================
+   ステージクリア アニメーション
+   ============================================================ */
+
+@keyframes stage-clear-content-in {
+
+    0% {
+        opacity: 0;
+        transform:
+            scale(0.82)
+            translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+@keyframes stage-clear-label-in {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes stage-clear-word-in {
+
+    0% {
+        opacity: 0;
+        transform:
+            scale(0.65);
+        filter: blur(10px);
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            scale(1.08);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            scale(1);
+        filter: blur(0);
+    }
+}
+
+
+@keyframes stage-clear-line-in {
+
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+
+/* ============================================================
+   スマートフォン
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .stage-clear-label {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+    }
+
+    .stage-clear-word {
+        font-size: 20vw;
+        letter-spacing: 0.1em;
+    }
+
+    .stage-clear-line {
+        width: 65vw;
+        margin-top: 18px;
+    }
+}

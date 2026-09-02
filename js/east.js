@@ -9,21 +9,23 @@
 //   ・駒の文字は非表示
 //   ・王が選択された状態で開始
 //   ・王なら上に「王」
-//   ・それ以外なら「？」
+//   ・それ以外なら緑色の「？」
 //
 // 中：かな
 //   ・10個のボタン
 //   ・3文字を選択
 //   ・順番は関係なし
 //   ・あ・た・ま → 頭
-//   ・それ以外 → ？
+//   ・か・た・な → ？
+//   ・さ・か・な → ？
+//   ・それ以外 → 何も表示しない
 //
 // 右：十二支
 //   ・12個のボタン
 //   ・十二支の文字は非表示
 //   ・午が選択された状態で開始
 //   ・午なら上に「馬」
-//   ・それ以外なら「？」
+//   ・それ以外なら緑色の「？」
 //
 // 正解
 //   将棋 = 角
@@ -74,6 +76,7 @@ const eastState = {
 };
 
 
+
 // ============================================================
 // 将棋盤
 // ============================================================
@@ -101,7 +104,7 @@ const SHOGI_BOARD = [
     ],
 
     [
-        "", "", "", "", "", "", "", ""
+        "", "", "", "", "", "", "", "", ""
     ],
 
     [
@@ -117,6 +120,7 @@ const SHOGI_BOARD = [
     ]
 
 ];
+
 
 
 // ============================================================
@@ -137,6 +141,7 @@ const EAST_KANA = [
     "わ"
 
 ];
+
 
 
 // ============================================================
@@ -161,15 +166,22 @@ const EAST_ZODIAC = [
 ];
 
 
+
 // ============================================================
 // 東の壁 初期化
 // ============================================================
 
 function initEast() {
 
-    const content = document.getElementById("east-content");
+    const content =
+        document.getElementById(
+            "east-content"
+        );
 
-    if (!content) return;
+
+    if (!content) {
+        return;
+    }
 
 
     content.innerHTML = `
@@ -190,10 +202,12 @@ function initEast() {
                     王
                 </div>
 
+
                 <div
                     id="east-shogi-board"
                     class="east-shogi-board"
                 ></div>
+
 
                 <div
                     class="east-selection"
@@ -221,10 +235,12 @@ function initEast() {
                     頭
                 </div>
 
+
                 <div
                     id="east-kana-buttons"
                     class="east-kana-buttons"
                 ></div>
+
 
                 <div
                     class="east-selection"
@@ -235,6 +251,7 @@ function initEast() {
                         あたま → 頭
                     </span>
                 </div>
+
 
                 <button
                     id="east-kana-reset"
@@ -260,10 +277,12 @@ function initEast() {
                     馬
                 </div>
 
+
                 <div
                     id="east-zodiac-circle"
                     class="east-zodiac-circle"
                 ></div>
+
 
                 <div
                     class="east-selection"
@@ -306,25 +325,36 @@ function initEast() {
     // ========================================================
 
     const reset =
-        document.getElementById("east-kana-reset");
+        document.getElementById(
+            "east-kana-reset"
+        );
 
 
     if (reset) {
-reset.addEventListener("click", () => {
 
-    // 初期状態「あ・た・ま」に戻す
-    eastState.kana = [
-        "あ",
-        "た",
-        "ま"
-    ];
+        reset.addEventListener(
+            "click",
+            () => {
 
-    // 選択した東の答え候補もリセット
-    eastState.answerChoice = null;
+                // 初期状態「あ・た・ま」に戻す
 
-    updateEast();
+                eastState.kana = [
+                    "あ",
+                    "た",
+                    "ま"
+                ];
 
-});
+
+                // 選択した東の答え候補もリセット
+
+                eastState.answerChoice =
+                    null;
+
+
+                updateEast();
+
+            }
+        );
 
     }
 
@@ -334,6 +364,7 @@ reset.addEventListener("click", () => {
 }
 
 
+
 // ============================================================
 // 将棋盤生成
 // ============================================================
@@ -341,27 +372,44 @@ reset.addEventListener("click", () => {
 function createEastShogiBoard() {
 
     const board =
-        document.getElementById("east-shogi-board");
+        document.getElementById(
+            "east-shogi-board"
+        );
 
-    if (!board) return;
+
+    if (!board) {
+        return;
+    }
 
 
     board.innerHTML = "";
 
 
-    for (let row = 0; row < 9; row++) {
+    for (
+        let row = 0;
+        row < 9;
+        row++
+    ) {
 
-        for (let col = 0; col < 9; col++) {
+        for (
+            let col = 0;
+            col < 9;
+            col++
+        ) {
 
             const piece =
                 SHOGI_BOARD[row][col];
 
 
             const cell =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
-            cell.type = "button";
+            cell.type =
+                "button";
+
 
             cell.className =
                 "east-shogi-cell";
@@ -373,9 +421,13 @@ function createEastShogiBoard() {
 
             if (!piece) {
 
-                cell.classList.add("empty");
+                cell.classList.add(
+                    "empty"
+                );
 
-                cell.disabled = true;
+
+                cell.disabled =
+                    true;
 
             }
 
@@ -388,9 +440,13 @@ function createEastShogiBoard() {
 
                 // 駒の文字は表示しない
 
-                cell.textContent = "";
+                cell.textContent =
+                    "";
 
-                cell.dataset.piece = piece;
+
+                cell.dataset.piece =
+                    piece;
+
 
                 cell.setAttribute(
                     "aria-label",
@@ -405,8 +461,10 @@ function createEastShogiBoard() {
                         eastState.shogiPiece =
                             piece;
 
+
                         eastState.answerChoice =
                             null;
+
 
                         updateEast();
 
@@ -416,13 +474,16 @@ function createEastShogiBoard() {
             }
 
 
-            board.appendChild(cell);
+            board.appendChild(
+                cell
+            );
 
         }
 
     }
 
 }
+
 
 
 // ============================================================
@@ -436,78 +497,96 @@ function createEastKanaButtons() {
             "east-kana-buttons"
         );
 
-    if (!container) return;
+
+    if (!container) {
+        return;
+    }
 
 
     container.innerHTML =
-        EAST_KANA.map(kana => {
+        EAST_KANA
+            .map(
+                kana => {
 
-            return `
+                    return `
 
-                <button
-                    type="button"
-                    class="east-kana-button"
-                    data-kana="${kana}"
-                    aria-label="${kana}"
-                ></button>
+                        <button
+                            type="button"
+                            class="east-kana-button"
+                            data-kana="${kana}"
+                            aria-label="${kana}"
+                        ></button>
 
-            `;
+                    `;
 
-        }).join("");
+                }
+            )
+            .join("");
 
 
     container
-        .querySelectorAll("[data-kana]")
-        .forEach(button => {
+        .querySelectorAll(
+            "[data-kana]"
+        )
+        .forEach(
+            button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                    const kana =
-                        button.dataset.kana;
+                        const kana =
+                            button.dataset.kana;
 
 
-                    // ------------------------------------------------
-                    // すでに選択されている文字は無視
-                    // ------------------------------------------------
+                        // ------------------------------------------------
+                        // すでに選択されている文字は無視
+                        // ------------------------------------------------
 
-                    if (
-                        eastState.kana.indexOf(kana)
-                        !== -1
-                    ) {
+                        if (
+                            eastState.kana.indexOf(
+                                kana
+                            ) !== -1
+                        ) {
 
-                        return;
+                            return;
+
+                        }
+
+
+                        // ------------------------------------------------
+                        // 3文字選択済みなら
+                        // 新しい組み合わせを開始
+                        // ------------------------------------------------
+
+                        if (
+                            eastState.kana.length >= 3
+                        ) {
+
+                            eastState.kana = [];
+
+                        }
+
+
+                        eastState.kana.push(
+                            kana
+                        );
+
+
+                        eastState.answerChoice =
+                            null;
+
+
+                        updateEast();
 
                     }
+                );
 
-
-                    // ------------------------------------------------
-                    // 3文字選択済みなら新しい組み合わせを開始
-                    // ------------------------------------------------
-
-                    if (
-                        eastState.kana.length >= 3
-                    ) {
-
-                        eastState.kana = [];
-
-                    }
-
-
-                    eastState.kana.push(kana);
-
-                    eastState.answerChoice =
-                        null;
-
-                    updateEast();
-
-                }
-            );
-
-        });
+            }
+        );
 
 }
+
 
 
 // ============================================================
@@ -521,55 +600,67 @@ function createEastZodiacButtons() {
             "east-zodiac-circle"
         );
 
-    if (!circle) return;
+
+    if (!circle) {
+        return;
+    }
 
 
     circle.innerHTML =
-        EAST_ZODIAC.map(
-            (zodiac, index) => {
+        EAST_ZODIAC
+            .map(
+                (zodiac, index) => {
 
-                const angle =
-                    index * 30;
+                    const angle =
+                        index * 30;
 
 
-                return `
+                    return `
 
-                    <button
-                        type="button"
-                        class="east-zodiac-button"
-                        data-zodiac="${zodiac}"
-                        style="--zodiac-angle:${angle}deg"
-                        aria-label="${zodiac}"
-                    ></button>
+                        <button
+                            type="button"
+                            class="east-zodiac-button"
+                            data-zodiac="${zodiac}"
+                            style="--zodiac-angle:${angle}deg"
+                            aria-label="${zodiac}"
+                        ></button>
 
-                `;
+                    `;
 
-            }
-        ).join("");
+                }
+            )
+            .join("");
 
 
     circle
-        .querySelectorAll("[data-zodiac]")
-        .forEach(button => {
+        .querySelectorAll(
+            "[data-zodiac]"
+        )
+        .forEach(
+            button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                    eastState.zodiac =
-                        button.dataset.zodiac;
+                        eastState.zodiac =
+                            button.dataset.zodiac;
 
-                    eastState.answerChoice =
-                        null;
 
-                    updateEast();
+                        eastState.answerChoice =
+                            null;
 
-                }
-            );
 
-        });
+                        updateEast();
+
+                    }
+                );
+
+            }
+        );
 
 }
+
 
 
 // ============================================================
@@ -584,20 +675,22 @@ function updateEastShogi() {
         );
 
 
-    buttons.forEach(button => {
+    buttons.forEach(
+        button => {
 
-        button.classList.toggle(
+            button.classList.toggle(
 
-            "selected",
+                "selected",
 
-            eastState.shogiPiece !== null &&
+                eastState.shogiPiece !== null &&
 
-            button.dataset.piece ===
-                eastState.shogiPiece
+                button.dataset.piece ===
+                    eastState.shogiPiece
 
-        );
+            );
 
-    });
+        }
+    );
 
 
     const selection =
@@ -609,13 +702,22 @@ function updateEastShogi() {
     if (selection) {
 
         selection.textContent =
-            eastState.shogiPiece ?? "なし";
+            eastState.shogiPiece ??
+            "なし";
 
     }
 
 
     // --------------------------------------------------------
     // 上に表示する答え
+    // --------------------------------------------------------
+    //
+    // 王
+    //   → 王（緑）
+    //
+    // それ以外
+    //   → ？（緑）
+    //
     // --------------------------------------------------------
 
     const answer =
@@ -624,25 +726,42 @@ function updateEastShogi() {
         );
 
 
-    if (!answer) return;
+    if (!answer) {
+        return;
+    }
 
 
-    if (eastState.shogiPiece === "王") {
+    if (
+        eastState.shogiPiece ===
+        "王"
+    ) {
 
-        answer.textContent = "王";
+        answer.textContent =
+            "王";
 
-        answer.classList.add("correct");
+
+        answer.classList.add(
+            "correct"
+        );
 
     }
+
     else {
 
-        answer.textContent = "？";
+        answer.textContent =
+            "？";
 
-        answer.classList.remove("correct");
+
+        // 「？」も緑色
+
+        answer.classList.add(
+            "correct"
+        );
 
     }
 
 }
+
 
 
 // ============================================================
@@ -683,19 +802,21 @@ function updateEastKana() {
         .querySelectorAll(
             ".east-kana-button"
         )
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            button.classList.toggle(
+                button.classList.toggle(
 
-                "selected",
+                    "selected",
 
-                eastState.kana.indexOf(
-                    button.dataset.kana
-                ) !== -1
+                    eastState.kana.indexOf(
+                        button.dataset.kana
+                    ) !== -1
 
-            );
+                );
 
-        });
+            }
+        );
 
 
     // --------------------------------------------------------
@@ -708,25 +829,74 @@ function updateEastKana() {
         );
 
 
-    if (!answer) return;
+    if (!answer) {
+        return;
+    }
 
 
-    if (isHeadKana()) {
+    // ========================================================
+    // あ・た・ま → 頭
+    // ========================================================
 
-        answer.textContent = "頭";
+    if (
+        isHeadKana()
+    ) {
 
-        answer.classList.add("correct");
+        answer.textContent =
+            "頭";
+
+
+        answer.classList.add(
+            "correct"
+        );
 
     }
+
+
+    // ========================================================
+    // か・た・な → ？
+    // さ・か・な → ？
+    //
+    // どちらも緑色
+    // ========================================================
+
+    else if (
+
+        character === "刀" ||
+
+        character === "魚"
+
+    ) {
+
+        answer.textContent =
+            "？";
+
+
+        answer.classList.add(
+            "correct"
+        );
+
+    }
+
+
+    // ========================================================
+    // その他 → 何も表示しない
+    // ========================================================
+
     else {
 
-        answer.textContent = "？";
+        answer.textContent =
+            "";
 
-        answer.classList.remove("correct");
+
+        answer.classList.remove(
+            "correct"
+        );
 
     }
 
 }
+
 
 
 // ============================================================
@@ -736,7 +906,9 @@ function updateEastKana() {
 
 function isHeadKana() {
 
-    if (eastState.kana.length !== 3) {
+    if (
+        eastState.kana.length !== 3
+    ) {
 
         return false;
 
@@ -751,14 +923,22 @@ function isHeadKana() {
 
 
     const target =
-        ["あ", "た", "ま"]
+        [
+            "あ",
+            "た",
+            "ま"
+        ]
             .sort()
             .join("");
 
 
-    return selected === target;
+    return (
+        selected ===
+        target
+    );
 
 }
+
 
 
 // ============================================================
@@ -776,7 +956,8 @@ function updateEastZodiac() {
     if (selection) {
 
         selection.textContent =
-            eastState.zodiac ?? "なし";
+            eastState.zodiac ??
+            "なし";
 
     }
 
@@ -785,22 +966,32 @@ function updateEastZodiac() {
         .querySelectorAll(
             ".east-zodiac-button"
         )
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            button.classList.toggle(
+                button.classList.toggle(
 
-                "selected",
+                    "selected",
 
-                button.dataset.zodiac ===
-                    eastState.zodiac
+                    button.dataset.zodiac ===
+                        eastState.zodiac
 
-            );
+                );
 
-        });
+            }
+        );
 
 
     // --------------------------------------------------------
     // 上に表示する答え
+    // --------------------------------------------------------
+    //
+    // 午
+    //   → 馬（緑）
+    //
+    // それ以外
+    //   → ？（緑）
+    //
     // --------------------------------------------------------
 
     const answer =
@@ -809,32 +1000,53 @@ function updateEastZodiac() {
         );
 
 
-    if (!answer) return;
+    if (!answer) {
+        return;
+    }
 
 
-    if (eastState.zodiac === "午") {
+    if (
+        eastState.zodiac ===
+        "午"
+    ) {
 
-        answer.textContent = "馬";
+        answer.textContent =
+            "馬";
 
-        answer.classList.add("correct");
+
+        answer.classList.add(
+            "correct"
+        );
 
     }
+
     else {
 
-        answer.textContent = "？";
+        answer.textContent =
+            "？";
 
-        answer.classList.remove("correct");
+
+        // 「？」も緑色
+
+        answer.classList.add(
+            "correct"
+        );
 
     }
 
 }
 
 
+
 // ============================================================
 // かな → 漢字
 // ============================================================
 //
-// 「か・た・な」は順不同で「刀」
+// 「あ・た・ま」 → 頭
+// 「か・た・な」 → 刀
+// 「さ・か・な」 → 魚
+//
+// 順番は関係なし。
 //
 // 「か・わ」は旧特殊処理として「川」
 // も残しておく。
@@ -842,7 +1054,13 @@ function updateEastZodiac() {
 
 function getEastKanaCharacter() {
 
-    if (eastState.kana.length === 2) {
+    // ========================================================
+    // 2文字
+    // ========================================================
+
+    if (
+        eastState.kana.length === 2
+    ) {
 
         const value =
             eastState.kana
@@ -852,12 +1070,18 @@ function getEastKanaCharacter() {
 
 
         const kawa =
-            ["か", "わ"]
+            [
+                "か",
+                "わ"
+            ]
                 .sort()
                 .join("");
 
 
-        if (value === kawa) {
+        if (
+            value ===
+            kawa
+        ) {
 
             return "川";
 
@@ -866,7 +1090,13 @@ function getEastKanaCharacter() {
     }
 
 
-    if (eastState.kana.length === 3) {
+    // ========================================================
+    // 3文字
+    // ========================================================
+
+    if (
+        eastState.kana.length === 3
+    ) {
 
         const value =
             eastState.kana
@@ -875,15 +1105,50 @@ function getEastKanaCharacter() {
                 .join("");
 
 
+        // ----------------------------------------------------
+        // か・た・な → 刀
+        // ----------------------------------------------------
+
         const katana =
-            ["か", "た", "な"]
+            [
+                "か",
+                "た",
+                "な"
+            ]
                 .sort()
                 .join("");
 
 
-        if (value === katana) {
+        if (
+            value ===
+            katana
+        ) {
 
             return "刀";
+
+        }
+
+
+        // ----------------------------------------------------
+        // さ・か・な → 魚
+        // ----------------------------------------------------
+
+        const sakana =
+            [
+                "さ",
+                "か",
+                "な"
+            ]
+                .sort()
+                .join("");
+
+
+        if (
+            value ===
+            sakana
+        ) {
+
+            return "魚";
 
         }
 
@@ -893,6 +1158,7 @@ function getEastKanaCharacter() {
     return null;
 
 }
+
 
 
 // ============================================================
@@ -909,14 +1175,23 @@ function getEastCandidates() {
     // パネル3非表示時の旧特殊問題
     // --------------------------------------------------------
 
-    if (!eastState.panel3Visible) {
+    if (
+        !eastState.panel3Visible
+    ) {
 
         if (
-            eastState.shogiPiece === "金" &&
-            kanaCharacter === "川"
+
+            eastState.shogiPiece ===
+            "金" &&
+
+            kanaCharacter ===
+            "川"
+
         ) {
 
-            return ["釧"];
+            return [
+                "釧"
+            ];
 
         }
 
@@ -932,23 +1207,33 @@ function getEastCandidates() {
 
     if (
 
-        eastState.shogiPiece === "角" &&
+        eastState.shogiPiece ===
+        "角" &&
 
-        eastState.kana.length === 3 &&
+        eastState.kana.length ===
+        3 &&
 
         eastState.kana
             .slice()
             .sort()
             .join("") ===
-            ["か", "た", "な"]
+
+            [
+                "か",
+                "た",
+                "な"
+            ]
                 .sort()
                 .join("") &&
 
-        eastState.zodiac === "丑"
+        eastState.zodiac ===
+        "丑"
 
     ) {
 
-        return ["解"];
+        return [
+            "解"
+        ];
 
     }
 
@@ -956,6 +1241,7 @@ function getEastCandidates() {
     return [];
 
 }
+
 
 
 // ============================================================
@@ -970,25 +1256,35 @@ function updateEastResult() {
         );
 
 
-    if (!result) return;
+    if (!result) {
+        return;
+    }
 
 
     const candidates =
         getEastCandidates();
 
 
-    result.innerHTML = "";
+    result.innerHTML =
+        "";
 
 
     // --------------------------------------------------------
     // 未完成
     // --------------------------------------------------------
 
-    if (candidates.length === 0) {
+    if (
+        candidates.length === 0
+    ) {
 
-        result.textContent = "？";
+        result.textContent =
+            "？";
 
-        result.classList.remove("solved");
+
+        result.classList.remove(
+            "solved"
+        );
+
 
         return;
 
@@ -999,12 +1295,18 @@ function updateEastResult() {
     // 1文字だけ
     // --------------------------------------------------------
 
-    if (candidates.length === 1) {
+    if (
+        candidates.length === 1
+    ) {
 
         result.textContent =
             candidates[0];
 
-        result.classList.add("solved");
+
+        result.classList.add(
+            "solved"
+        );
+
 
         return;
 
@@ -1016,58 +1318,71 @@ function updateEastResult() {
     // --------------------------------------------------------
 
     const choices =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     choices.className =
         "result-choices";
 
 
-    candidates.forEach(character => {
+    candidates.forEach(
+        character => {
 
-        const button =
-            document.createElement("button");
-
-
-        button.type = "button";
-
-        button.className =
-            "result-choice";
+            const button =
+                document.createElement(
+                    "button"
+                );
 
 
-        button.textContent =
-            character;
+            button.type =
+                "button";
 
 
-        button.classList.toggle(
-
-            "selected",
-
-            eastState.answerChoice ===
-                character
-
-        );
+            button.className =
+                "result-choice";
 
 
-        button.addEventListener(
-            "click",
-            () => {
-
-                eastState.answerChoice =
-                    character;
-
-                updateEast();
-
-            }
-        );
+            button.textContent =
+                character;
 
 
-        choices.appendChild(button);
+            button.classList.toggle(
 
-    });
+                "selected",
+
+                eastState.answerChoice ===
+                    character
+
+            );
 
 
-    result.appendChild(choices);
+            button.addEventListener(
+                "click",
+                () => {
+
+                    eastState.answerChoice =
+                        character;
+
+
+                    updateEast();
+
+                }
+            );
+
+
+            choices.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    result.appendChild(
+        choices
+    );
 
 
     result.classList.toggle(
@@ -1079,6 +1394,7 @@ function updateEastResult() {
     );
 
 }
+
 
 
 // ============================================================
@@ -1095,7 +1411,9 @@ function getEastSolvedCharacter() {
         getEastCandidates();
 
 
-    if (candidates.length === 1) {
+    if (
+        candidates.length === 1
+    ) {
 
         return candidates[0];
 
@@ -1103,8 +1421,11 @@ function getEastSolvedCharacter() {
 
 
     if (
+
         candidates.length > 1 &&
+
         eastState.answerChoice
+
     ) {
 
         return eastState.answerChoice;
@@ -1115,6 +1436,7 @@ function getEastSolvedCharacter() {
     return null;
 
 }
+
 
 
 // ============================================================
@@ -1128,6 +1450,7 @@ function isEastSolved() {
     );
 
 }
+
 
 
 // ============================================================

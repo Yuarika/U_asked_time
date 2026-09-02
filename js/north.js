@@ -374,7 +374,7 @@ function updateNorth() {
 
 
                 button.textContent =
-                    "ON";
+                    "After";
 
 
                 button.setAttribute(
@@ -410,7 +410,7 @@ function updateNorth() {
 
 
                 button.textContent =
-                    "OFF";
+                    "";
 
 
                 button.setAttribute(

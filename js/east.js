@@ -241,7 +241,7 @@ function initEast() {
                     class="east-reset-button"
                     type="button"
                 >
-                    かなをリセット
+                    リセット
                 </button>
 
             </div>

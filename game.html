@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -169,7 +170,7 @@
 
 <!-- ============================================================
      ステージクリア演出
-     
+
      stage 1 → 昔
      stage 2 → 今
      stage 3 → 明後日
@@ -230,6 +231,11 @@
             U asked time
         </div>
 
+
+        <!-- ====================================================
+             X共有
+             ==================================================== -->
+
         <button
             id="x-share-button"
             class="x-share-button"
@@ -242,6 +248,33 @@
             </span>
 
         </button>
+
+
+        <!-- ====================================================
+             VRChat動画
+             ==================================================== -->
+
+        <div
+            id="vrchat-video"
+            class="vrchat-video">
+
+            <div class="vrchat-video-title">
+                VRChatでの様子はこちら！
+            </div>
+
+            <div class="vrchat-video-player">
+
+                <iframe
+                    src="https://www.youtube.com/embed/TfZdqYsDV94"
+                    title="VRChatでの様子はこちら！"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -260,6 +293,7 @@
 
 
 <script>
+
 /* ============================================================
    ステージクリア演出
    ============================================================ */
@@ -280,91 +314,111 @@
 
     /* --------------------------------------------------------
        ステージクリア演出を表示
-       
+
        stage:
        1 → 昔
        2 → 今
        3 → 明後日
        -------------------------------------------------------- */
 
-    window.showStageClear = function (stage, character) {
+    window.showStageClear =
+        function (stage, character) {
 
-        if (!overlay || !label || !word) {
-            return;
-        }
+            if (
+                !overlay ||
+                !label ||
+                !word
+            ) {
 
-        if (isShowing) {
-            return;
-        }
+                return;
 
-        isShowing = true;
-
-
-        /* ----------------------------------------------------
-           表示内容
-           ---------------------------------------------------- */
-
-        label.textContent =
-            "STAGE " + stage + " CLEAR";
-
-        word.textContent =
-            character;
+            }
 
 
-        /* ----------------------------------------------------
-           アニメーションをリセット
-           ---------------------------------------------------- */
+            if (isShowing) {
 
-        overlay.classList.remove("show");
+                return;
 
-        void overlay.offsetWidth;
+            }
 
 
-        /* ----------------------------------------------------
-           表示
-           ---------------------------------------------------- */
-
-        overlay.classList.add("show");
-
-        overlay.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.classList.add(
-            "stage-clear-active"
-        );
+            isShowing = true;
 
 
-        /* ----------------------------------------------------
-           短時間表示して消す
-           ---------------------------------------------------- */
+            /* ------------------------------------------------
+               表示内容
+               ------------------------------------------------ */
 
-        setTimeout(function () {
+            label.textContent =
+                "STAGE " + stage + " CLEAR";
+
+            word.textContent =
+                character;
+
+
+            /* ------------------------------------------------
+               アニメーションをリセット
+               ------------------------------------------------ */
 
             overlay.classList.remove("show");
 
+            void overlay.offsetWidth;
+
+
+            /* ------------------------------------------------
+               表示
+               ------------------------------------------------ */
+
+            overlay.classList.add("show");
+
             overlay.setAttribute(
                 "aria-hidden",
-                "true"
+                "false"
             );
 
-            document.body.classList.remove(
+            document.body.classList.add(
                 "stage-clear-active"
             );
 
 
-            setTimeout(function () {
+            /* ------------------------------------------------
+               短時間表示して消す
+               ------------------------------------------------ */
 
-                isShowing = false;
+            setTimeout(
+                function () {
 
-            }, 300);
+                    overlay.classList.remove(
+                        "show"
+                    );
 
-        }, 1200);
+                    overlay.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
 
-    };
+                    document.body.classList.remove(
+                        "stage-clear-active"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            isShowing = false;
+
+                        },
+                        300
+                    );
+
+                },
+                1200
+            );
+
+        };
 
 })();
+
 
 
 /* ============================================================
@@ -374,15 +428,25 @@
 (function () {
 
     const overlay =
-        document.getElementById("final-clear-overlay");
+        document.getElementById(
+            "final-clear-overlay"
+        );
+
 
     const shareButton =
-        document.getElementById("x-share-button");
+        document.getElementById(
+            "x-share-button"
+        );
+
 
     const clearCard =
-        document.getElementById("clear-card");
+        document.getElementById(
+            "clear-card"
+        );
+
 
     let clearShown = false;
+
 
 
     /* --------------------------------------------------------
@@ -392,17 +456,25 @@
     function showFinalClear() {
 
         if (clearShown) {
+
             return;
+
         }
+
 
         clearShown = true;
 
-        overlay.classList.add("show");
+
+        overlay.classList.add(
+            "show"
+        );
+
 
         overlay.setAttribute(
             "aria-hidden",
             "false"
         );
+
 
         document.body.classList.add(
             "final-clear-active"
@@ -411,8 +483,17 @@
     }
 
 
+
     /* --------------------------------------------------------
        X共有
+       
+       投稿内容：
+       
+       宇宙謎「U asked time」をクリアしました！
+       #宇宙謎 #U_asked
+       @yuarikaa
+       
+       https://yuarika.github.io/I_asked_Web/
        -------------------------------------------------------- */
 
     if (shareButton) {
@@ -421,18 +502,24 @@
             "click",
             function () {
 
-                const text =
-                    "U asked time をクリアしました！\n\n#Uaskedtime";
 
-                const url =
-                    window.location.href;
+                const text =
+                    "宇宙謎「U asked time」をクリアしました！\n" +
+                    "#宇宙謎 #U_asked\n" +
+                    "@yuarikaa";
+
+
+                const startUrl =
+                    "https://yuarika.github.io/I_asked_Web/";
+
 
                 const shareUrl =
                     "https://twitter.com/intent/tweet" +
                     "?text=" +
                     encodeURIComponent(text) +
                     "&url=" +
-                    encodeURIComponent(url);
+                    encodeURIComponent(startUrl);
+
 
                 window.open(
                     shareUrl,
@@ -446,13 +533,14 @@
     }
 
 
+
     /* --------------------------------------------------------
        clear-card の表示を監視
-       
-       north.js 側で
-       
+
+       puzzle.js / north.js 側で
+
        clear-card.hidden = false
-       
+
        になった瞬間を検知する
        -------------------------------------------------------- */
 
@@ -497,6 +585,7 @@
     }
 
 })();
+
 </script>
 
 </body>

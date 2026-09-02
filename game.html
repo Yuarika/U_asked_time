@@ -1,110 +1,96 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>U asked time</title>
+    <title>U asked time</title>
 
-<!-- ============================================================
-     SEO
-     ============================================================ -->
+    <!-- ============================================================
+         SEO
+         ============================================================ -->
 
-<meta
-    name="description"
-    content="宇宙謎「U asked time」に挑戦！"
->
+    <meta
+        name="description"
+        content="宇宙謎「U asked time」に挑戦！"
+    >
 
-<!-- ============================================================
-     OGP
-     ============================================================ -->
+    <!-- ============================================================
+         OGP
+         ============================================================ -->
 
-<meta property="og:type" content="website">
+    <meta property="og:type" content="website">
 
-<meta
-    property="og:title"
-    content="U asked time"
->
+    <meta
+        property="og:title"
+        content="U asked time"
+    >
 
-<meta
-    property="og:description"
-    content="宇宙謎「U asked time」に挑戦！"
->
+    <meta
+        property="og:description"
+        content="宇宙謎「U asked time」に挑戦！"
+    >
 
-<meta
-    property="og:url"
-    content="https://yuarika.github.io/U_asked_time/"
->
+    <meta
+        property="og:url"
+        content="https://yuarika.github.io/U_asked_time/"
+    >
 
-<meta
-    property="og:image"
-    content="https://yuarika.github.io/U_asked_time/images/title.png"
->
+    <meta
+        property="og:image"
+        content="https://yuarika.github.io/U_asked_time/images/title.png"
+    >
 
-<!-- ============================================================
-     X / Twitter Card
-     ============================================================ -->
+    <!-- ============================================================
+         X / Twitter Card
+         ============================================================ -->
 
-<meta
-    name="twitter:card"
-    content="summary_large_image"
->
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
 
-<meta
-    name="twitter:title"
-    content="U asked time"
->
+    <meta
+        name="twitter:title"
+        content="U asked time"
+    >
 
-<meta
-    name="twitter:description"
-    content="宇宙謎「U asked time」に挑戦！"
->
+    <meta
+        name="twitter:description"
+        content="宇宙謎「U asked time」に挑戦！"
+    >
 
-<meta
-    name="twitter:image"
-    content="https://yuarika.github.io/U_asked_time/images/title.png"
->
+    <meta
+        name="twitter:image"
+        content="https://yuarika.github.io/U_asked_time/images/title.png"
+    >
 
-<!-- ============================================================
-     CSS
-     ============================================================ -->
+    <!-- ============================================================
+         CSS
+         ============================================================ -->
 
-<link rel="stylesheet" href="css/style.css">
-```
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-```
-<!-- ============================================================
-     GAME BACKGROUND
-     ============================================================ -->
-
 <div class="game-background"></div>
 <div class="game-background-overlay"></div>
 
 
-<!-- ============================================================
-     MAIN
-     ============================================================ -->
-
 <main>
 
-
     <!-- ========================================================
-         HEADER
+         ヘッダー
          ======================================================== -->
 
     <header class="site-header">
 
-        <h1>
-            U asked time
-        </h1>
+        <h1>U asked time</h1>
 
-        <div class="question-numbers">
+        <div class="title-numbers">
             1　　2 3 4 5 6　　7 8 9 10
         </div>
 
@@ -112,140 +98,167 @@
 
 
     <!-- ========================================================
-         ANSWER CARD
+         現在の問題・最終解答
          ======================================================== -->
 
     <section class="answer-card">
 
+        <div class="answer-label">
+            問題
+        </div>
+
         <div
             id="problem-text"
-            class="problem-text"
-        >
+            class="problem-number">
             914238
+        </div>
+
+
+        <div class="answer-label player-answer-label">
+            現在のプレイヤーの最終的な解答
         </div>
 
         <div
             id="player-final-answer"
-            class="player-final-answer"
-        >
+            class="player-final-answer">
+            ？
         </div>
+
 
         <div
             id="stage-status"
-            class="stage-status"
-        >
+            class="stage-status">
+            第1段階
         </div>
 
     </section>
 
 
     <!-- ========================================================
-         NORTH WALL
+         北の壁
          ======================================================== -->
 
     <section
         id="north-wall"
-        class="north-wall"
-    >
+        class="wall north-wall">
     </section>
 
 
     <!-- ========================================================
-         SIDE WALL
+         西・南・東 切り替え
          ======================================================== -->
 
-    <section class="side-wall">
+    <section class="wall side-wall-switcher">
 
-        <div class="side-wall-header">
+        <div class="switcher-head">
 
             <button
                 id="side-prev"
-                type="button"
-            >
-                ◀
+                class="side-arrow"
+                aria-label="前の壁">
+                ‹
             </button>
 
-            <h2 id="side-title">
-                西
-            </h2>
+
+            <div>
+
+                <div class="switcher-caption">
+                    SIDE PUZZLE
+                </div>
+
+                <h2 id="side-title">
+                    西の壁
+                </h2>
+
+            </div>
+
 
             <button
                 id="side-next"
-                type="button"
-            >
-                ▶
+                class="side-arrow"
+                aria-label="次の壁">
+                ›
             </button>
 
         </div>
 
+
         <div
             id="side-content"
-            class="side-content"
-        >
+            class="side-content">
         </div>
 
     </section>
 
 
     <!-- ========================================================
-         CLEAR HISTORY
+         クリア済み
          ======================================================== -->
 
-    <section
-        id="clear-history"
-        class="clear-history"
-    >
+    <section class="clear-history-card">
+
+        <div class="clear-history-heading">
+            クリア済み
+        </div>
+
+        <div
+            id="clear-history"
+            class="clear-history">
+        </div>
+
     </section>
 
 
     <!-- ========================================================
-         FINAL CLEAR CARD
+         全クリア
          ======================================================== -->
 
     <section
         id="clear-card"
-        hidden
-    >
+        class="clear-card"
+        hidden>
 
-        <div class="clear-card-inner">
-
-            <p class="clear-card-label">
-                ALL PUZZLES CLEARED
-            </p>
-
-            <h2>
-                大正解
-            </h2>
-
+        <div>
+            ALL PUZZLES CLEARED
         </div>
 
-    </section>
+        <strong>
+            大正解
+        </strong>
 
+    </section>
 
 </main>
 
 
 <!-- ============================================================
-     STAGE CLEAR OVERLAY
+     ステージクリア演出
+
+     stage 1 → 昔
+     stage 2 → 今
+     stage 3 → 明後日
      ============================================================ -->
 
 <div
     id="stageClearOverlay"
     class="stage-clear-overlay"
-    aria-hidden="true"
->
+    aria-hidden="true">
 
     <div class="stage-clear-content">
 
-        <p class="stage-clear-label">
-            STAGE CLEAR
-        </p>
+        <div
+            id="stageClearLabel"
+            class="stage-clear-label">
+            STAGE 1 CLEAR
+        </div>
 
         <div
             id="stageClearWord"
-            class="stage-clear-word"
-        >
+            class="stage-clear-word">
+            昔
         </div>
+
+        <div class="stage-clear-line"></div>
 
     </div>
 
@@ -253,66 +266,76 @@
 
 
 <!-- ============================================================
-     FINAL CLEAR OVERLAY
+     最終クリア演出
      ============================================================ -->
 
 <div
     id="final-clear-overlay"
     class="final-clear-overlay"
-    aria-hidden="true"
->
+    aria-hidden="true">
 
-    <div
-        class="clear-flash"
-    ></div>
+    <div class="clear-flash"></div>
 
-    <div
-        class="clear-particles"
-    ></div>
-
+    <div class="clear-particles"></div>
 
     <div class="final-clear-content">
 
-        <p class="final-clear-label">
+        <div class="final-clear-small">
             ALL PUZZLES CLEARED
-        </p>
+        </div>
 
-        <h2>
+        <div class="final-clear-title">
             大正解
-        </h2>
+        </div>
 
-        <p class="final-clear-subtitle">
-            宇宙謎「U asked time」CLEAR
-        </p>
+        <div class="final-clear-line"></div>
+
+        <div class="final-clear-subtitle">
+            U asked time
+        </div>
 
 
         <!-- ====================================================
-             X SHARE
+             X共有
              ==================================================== -->
 
         <button
-            id="share-clear-button"
-            class="share-clear-button"
-            type="button"
-        >
-            𝕏　クリアをポスト
+            id="x-share-button"
+            class="x-share-button"
+            type="button">
+
+            <span class="x-share-icon">𝕏</span>
+
+            <span>
+                クリアをXで共有
+            </span>
+
         </button>
 
 
         <!-- ====================================================
-             VRChat VIDEO
+             VRChat動画
              ==================================================== -->
 
-        <div class="youtube-container">
+        <div
+            id="vrchat-video"
+            class="vrchat-video">
 
-            <iframe
-                src="https://www.youtube.com/embed/TfZdqYsDV94"
-                title="VRChatでの様子はこちら！"
-                frameborder="0"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
+            <div class="vrchat-video-title">
+                VRChatでの様子はこちら！
+            </div>
+
+            <div class="vrchat-video-player">
+
+                <iframe
+                    src="https://www.youtube.com/embed/TfZdqYsDV94"
+                    title="VRChatでの様子はこちら！"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
 
         </div>
 
@@ -322,7 +345,7 @@
 
 
 <!-- ============================================================
-     JAVASCRIPT
+     JavaScript
      ============================================================ -->
 
 <script src="js/puzzle.js"></script>
@@ -332,41 +355,186 @@
 <script src="js/north.js"></script>
 
 
-<!-- ============================================================
-     STAGE CLEAR
-     ============================================================ -->
-
 <script>
 
-    window.showStageClear = function(stage, character) {
+/* ============================================================
+   ステージクリア演出
+   ============================================================ */
 
-        const overlay =
-            document.getElementById("stageClearOverlay");
+(function () {
 
-        const word =
-            document.getElementById("stageClearWord");
+    const overlay =
+        document.getElementById("stageClearOverlay");
 
-        if (!overlay || !word) {
-            return;
-        }
+    const label =
+        document.getElementById("stageClearLabel");
+
+    const word =
+        document.getElementById("stageClearWord");
+
+    let isShowing = false;
 
 
-        const stageWords = {
+    /* --------------------------------------------------------
+       ステージクリア演出を表示
 
-            1: "昔",
+       stage:
+       1 → 昔
+       2 → 今
+       3 → 明後日
+       -------------------------------------------------------- */
 
-            2: "今",
+    window.showStageClear =
+        function (stage, character) {
 
-            3: "明後日"
+            if (
+                !overlay ||
+                !label ||
+                !word
+            ) {
+
+                return;
+
+            }
+
+
+            if (isShowing) {
+
+                return;
+
+            }
+
+
+            isShowing = true;
+
+
+            /* ------------------------------------------------
+               表示内容
+               ------------------------------------------------ */
+
+            label.textContent =
+                "STAGE " + stage + " CLEAR";
+
+            word.textContent =
+                character;
+
+
+            /* ------------------------------------------------
+               アニメーションをリセット
+               ------------------------------------------------ */
+
+            overlay.classList.remove("show");
+
+            void overlay.offsetWidth;
+
+
+            /* ------------------------------------------------
+               表示
+               ------------------------------------------------ */
+
+            overlay.classList.add("show");
+
+            overlay.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "stage-clear-active"
+            );
+
+
+            /* ------------------------------------------------
+               短時間表示して消す
+               ------------------------------------------------ */
+
+            setTimeout(
+                function () {
+
+                    overlay.classList.remove(
+                        "show"
+                    );
+
+                    overlay.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                    document.body.classList.remove(
+                        "stage-clear-active"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            isShowing = false;
+
+                        },
+                        300
+                    );
+
+                },
+                1200
+            );
 
         };
 
-
-        word.textContent =
-            stageWords[stage] || character || "";
+})();
 
 
-        overlay.classList.add("show");
+
+/* ============================================================
+   最終クリア演出
+   ============================================================ */
+
+(function () {
+
+    const overlay =
+        document.getElementById(
+            "final-clear-overlay"
+        );
+
+
+    const shareButton =
+        document.getElementById(
+            "x-share-button"
+        );
+
+
+    const clearCard =
+        document.getElementById(
+            "clear-card"
+        );
+
+
+    let clearShown = false;
+
+
+
+    /* --------------------------------------------------------
+       CLEAR演出を表示
+       -------------------------------------------------------- */
+
+    function showFinalClear() {
+
+        if (
+            !overlay ||
+            clearShown
+        ) {
+
+            return;
+
+        }
+
+
+        clearShown = true;
+
+
+        overlay.classList.add(
+            "show"
+        );
+
 
         overlay.setAttribute(
             "aria-hidden",
@@ -374,62 +542,92 @@
         );
 
 
-        setTimeout(function() {
+        document.body.classList.add(
+            "final-clear-active"
+        );
 
-            overlay.classList.remove("show");
-
-            overlay.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        }, 1200);
-
-    };
-
-</script>
+    }
 
 
-<!-- ============================================================
-     FINAL CLEAR
-     ============================================================ -->
 
-<script>
+    /* --------------------------------------------------------
+       X共有
 
-    (function() {
+       投稿内容：
 
-        const clearCard =
-            document.getElementById("clear-card");
+       宇宙謎「U asked time」をクリアしました！
+       #宇宙謎 #U_asked
+       @yuarikaa
 
-        const finalOverlay =
-            document.getElementById("final-clear-overlay");
+       URLは U_asked_time のスタート画面
+       -------------------------------------------------------- */
 
-        if (!clearCard || !finalOverlay) {
-            return;
-        }
+    if (shareButton) {
 
-
-        function showFinalClear() {
-
-            finalOverlay.classList.add("show");
-
-            finalOverlay.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-        }
+        shareButton.addEventListener(
+            "click",
+            function () {
 
 
-        const observer =
-            new MutationObserver(function() {
+                const text =
+                    "宇宙謎「U asked time」をクリアしました！\n" +
+                    "#宇宙謎 #U_asked\n" +
+                    "@yuarikaa";
 
-                if (!clearCard.hidden) {
+
+                const startUrl =
+                    "https://yuarika.github.io/U_asked_time/";
+
+
+                const shareUrl =
+                    "https://twitter.com/intent/tweet" +
+                    "?text=" +
+                    encodeURIComponent(text) +
+                    "&url=" +
+                    encodeURIComponent(startUrl);
+
+
+                window.open(
+                    shareUrl,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* --------------------------------------------------------
+       clear-card の表示を監視
+
+       puzzle.js / north.js 側で
+
+       clear-card.hidden = false
+
+       になった瞬間を検知する
+       -------------------------------------------------------- */
+
+    const observer =
+        new MutationObserver(
+            function () {
+
+                if (
+                    clearCard &&
+                    !clearCard.hidden
+                ) {
+
                     showFinalClear();
+
                 }
 
-            });
+            }
+        );
 
+
+    if (clearCard) {
 
         observer.observe(
             clearCard,
@@ -440,58 +638,21 @@
         );
 
 
+        /* ----------------------------------------------------
+           ページ読み込み時点ですでにクリア済みだった場合
+           ---------------------------------------------------- */
+
         if (!clearCard.hidden) {
+
             showFinalClear();
-        }
-
-
-        <!-- ====================================================
-             X SHARE BUTTON
-             ==================================================== -->
-
-        const shareButton =
-            document.getElementById("share-clear-button");
-
-
-        if (shareButton) {
-
-            shareButton.addEventListener(
-                "click",
-                function() {
-
-                    const text =
-                        "宇宙謎「U asked time」をクリアしました！\n" +
-                        "#宇宙謎 #U_asked\n" +
-                        "@yuarikaa";
-
-
-                    const startUrl =
-                        "https://yuarika.github.io/U_asked_time/";
-
-
-                    const shareUrl =
-                        "https://twitter.com/intent/tweet" +
-                        "?text=" +
-                        encodeURIComponent(text) +
-                        "&url=" +
-                        encodeURIComponent(startUrl);
-
-
-                    window.open(
-                        shareUrl,
-                        "_blank",
-                        "noopener,noreferrer"
-                    );
-
-                }
-            );
 
         }
 
-    })();
+    }
+
+})();
 
 </script>
 
 </body>
-
 </html>

@@ -962,17 +962,31 @@ strong {
         0.08em;
 }
 
-
 /* ============================================================
    北 ON/OFF
    ============================================================ */
 
 .north-toggle-button {
     display:
-        block;
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 
     width:
         100%;
+
+    height:
+        40px;
+
+    min-height:
+        40px;
+
+    padding:
+        10px 8px;
 
     border:
         1px solid #4b78aa;
@@ -990,9 +1004,6 @@ strong {
     color:
         #dcecff;
 
-    padding:
-        10px 8px;
-
     font-size:
         12px;
 
@@ -1002,11 +1013,18 @@ strong {
     letter-spacing:
         0.12em;
 
+    line-height:
+        1;
+
     cursor:
         pointer;
 
     transition:
         0.15s ease;
+
+    /* 文字が空でもサイズを維持 */
+    box-sizing:
+        border-box;
 }
 
 
@@ -1028,7 +1046,6 @@ strong {
         0 0 15px
         rgba(255,83,97,0.25);
 }
-
 
 .north-panel-result {
     text-align:

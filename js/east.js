@@ -310,16 +310,21 @@ function initEast() {
 
 
     if (reset) {
+reset.addEventListener("click", () => {
 
-        reset.addEventListener("click", () => {
+    // 初期状態「あ・た・ま」に戻す
+    eastState.kana = [
+        "あ",
+        "た",
+        "ま"
+    ];
 
-            eastState.kana = [];
+    // 選択した東の答え候補もリセット
+    eastState.answerChoice = null;
 
-            eastState.answerChoice = null;
+    updateEast();
 
-            updateEast();
-
-        });
+});
 
     }
 

@@ -1,0 +1,652 @@
+/* ============================================================
+   U asked time
+   START SCREEN
+   ============================================================ */
+
+
+/* ============================================================
+   基本設定
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    font-family:
+        "Noto Sans JP",
+        "Yu Gothic",
+        "Hiragino Kaku Gothic ProN",
+        sans-serif;
+
+    background: #080b12;
+    color: #ffffff;
+}
+
+
+body {
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   START SCREEN
+   ============================================================ */
+
+.start-screen {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 60px 20px 40px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(60, 90, 140, 0.18),
+            transparent 45%
+        ),
+        #080b12;
+}
+
+
+/* ============================================================
+   背景グリッド
+   ============================================================ */
+
+.background-grid {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    transform:
+        perspective(500px)
+        rotateX(55deg)
+        scale(1.5);
+
+    transform-origin: center bottom;
+}
+
+
+/* ============================================================
+   背景グロー
+   ============================================================ */
+
+.background-glow {
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    left: 50%;
+    top: 30%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(80, 130, 200, 0.08),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   コンテナ
+   ============================================================ */
+
+.start-container {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: 100%;
+    max-width: 720px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.title-area {
+
+    margin-bottom: 35px;
+}
+
+
+.title-sub {
+
+    margin: 0 0 10px;
+
+    font-size: 12px;
+
+    letter-spacing: 0.35em;
+
+    color: #8995a8;
+}
+
+
+.title-area h1 {
+
+    margin: 0;
+
+    font-family:
+        "Times New Roman",
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+
+    font-size: clamp(42px, 9vw, 76px);
+
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+
+    line-height: 1.1;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.12);
+}
+
+
+.title-line {
+
+    margin: 18px 0 0;
+
+    font-size: 13px;
+
+    letter-spacing: 0.2em;
+
+    color: #8d99aa;
+}
+
+
+/* ============================================================
+   MAIN IMAGE
+   ============================================================ */
+
+.main-image {
+
+    position: relative;
+
+    width: 100%;
+
+    margin: 0 auto 45px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.16);
+
+    background: #111722;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45);
+}
+
+
+.main-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.35)
+        );
+}
+
+
+.main-image img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    min-height: 260px;
+
+    object-fit: cover;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.description {
+
+    max-width: 600px;
+
+    margin: 0 auto 45px;
+
+    padding: 0 20px;
+
+    text-align: left;
+}
+
+
+.description h2 {
+
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.35em;
+
+    color: #8d99aa;
+}
+
+
+.description p {
+
+    margin: 0 0 16px;
+
+    font-size: 14px;
+
+    line-height: 2.1;
+
+    letter-spacing: 0.05em;
+
+    color: #c8ced8;
+}
+
+
+.description p:last-child {
+
+    margin-bottom: 0;
+}
+
+
+/* ============================================================
+   START AREA
+   ============================================================ */
+
+.start-area {
+
+    margin-bottom: 35px;
+}
+
+
+/* ============================================================
+   START BUTTON
+   ============================================================ */
+
+.start-button {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 105px;
+
+    padding: 20px;
+
+    text-decoration: none;
+
+    border: 1px solid rgba(255,255,255,0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.02)
+        );
+
+    color: #ffffff;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.start-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    pointer-events: none;
+}
+
+
+.start-button:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.14),
+            rgba(255,255,255,0.04)
+        );
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.35);
+}
+
+
+.start-button:active {
+
+    transform: translateY(0);
+}
+
+
+.start-button-main {
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 30px;
+
+    letter-spacing: 0.25em;
+
+    margin-left: 0.25em;
+}
+
+
+.start-button-sub {
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    letter-spacing: 0.15em;
+
+    color: #9da7b7;
+}
+
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+
+.links-area {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   LINK BUTTON
+   ============================================================ */
+
+.link-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-height: 68px;
+
+    padding: 12px 16px;
+
+    text-decoration: none;
+
+    text-align: left;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    background: rgba(255,255,255,0.035);
+
+    color: #ffffff;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.link-button:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(255,255,255,0.07);
+
+    border-color: rgba(255,255,255,0.35);
+}
+
+
+/* ============================================================
+   LINK ICON
+   ============================================================ */
+
+.link-icon {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    font-size: 18px;
+
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   LINK TEXT
+   ============================================================ */
+
+.link-button strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.15em;
+}
+
+
+.link-button small {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #8995a8;
+
+    line-height: 1.4;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.start-footer {
+
+    margin-top: 50px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+
+.start-footer p {
+
+    margin: 0;
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    font-size: 12px;
+
+    letter-spacing: 0.2em;
+
+    color: #626c7c;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .start-screen {
+
+        padding:
+            40px 15px 30px;
+    }
+
+
+    .title-area {
+
+        margin-bottom: 25px;
+    }
+
+
+    .title-area h1 {
+
+        font-size: 42px;
+
+        letter-spacing: 0.04em;
+    }
+
+
+    .title-line {
+
+        font-size: 11px;
+
+        letter-spacing: 0.12em;
+    }
+
+
+    .main-image {
+
+        margin-bottom: 35px;
+    }
+
+
+    .main-image img {
+
+        min-height: 200px;
+    }
+
+
+    .description {
+
+        padding: 0 10px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .description p {
+
+        font-size: 13px;
+
+        line-height: 1.9;
+    }
+
+
+    .start-button {
+
+        min-height: 95px;
+    }
+
+
+    .links-area {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+}
